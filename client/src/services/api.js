@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // We configure it to use relative paths because Vite handles proxying of /api in dev mode
 const API = axios.create({
-  baseURL: ''
+  baseURL: import.meta.env.VITE_API_URL || ''
 });
 
 export const getDashboardStats = async (filters = {}) => {
