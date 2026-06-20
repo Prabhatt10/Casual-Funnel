@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Analytics Platform Demo Page</title>
+  <!-- Tailwind CSS via CDN for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Auto configure tracker endpoint to local backend -->
+  <script>
+    window.trackerConfig = {
+      endpoint: 'http://localhost:5000/api/events',
+      autoTrack: true
+    };
+  </script>
+  <!-- Load tracker SDK -->
+  <script src="tracker.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <span class="text-indigo-400 font-bold text-xl tracking-wider">CausalFunnelDemo</span>
+          </div>
+          <nav class="hidden md:block ml-10 flex space-x-4">
+            <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#features" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Features</a>
+            <a href="#pricing" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
+            <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          </nav>
+        </div>
+        <div class="flex">
+          <button id="nav-action-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-150">
+            Sign In
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <main class="flex-grow">
+    <div class="bg-indigo-900/40 py-16 border-b border-gray-800 text-center px-4">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Interaction Tracker Demo
+      </h1>
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-indigo-200">
+        Every click, page view, and mouse position clicked on this page is sent dynamically to the analytics backend database.
+      </p>
+      <div class="mt-8 flex justify-center space-x-4">
+        <button id="hero-primary-btn" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-lg hover:shadow-indigo-500/20 transition duration-150">
+          Primary CTA Button
+        </button>
+        <button id="hero-secondary-btn" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-gray-200 font-medium rounded-lg transition duration-150">
+          Secondary Action
+        </button>
+      </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <h2 class="text-3xl font-bold text-center text-white mb-12">Product Offerings</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div id="card-basic" class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-indigo-500 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="h-40 bg-gray-700 rounded-lg mb-4 overflow-hidden relative">
+              <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 flex items-center justify-center">
+                <span class="text-4xl">⚡</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Basic Tier</h3>
+            <p class="text-gray-400 text-sm mb-4">Core dashboard views, single site coverage, and basic session logging features.</p>
+          </div>
+          <button id="btn-select-basic" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium transition duration-150">
+            Select Basic
+          </button>
+        </div>
+
+        <!-- Card 2 -->
+        <div id="card-pro" class="bg-gray-800 rounded-xl p-6 border-2 border-indigo-500 hover:border-indigo-400 transition duration-300 relative flex flex-col justify-between">
+          <span class="absolute top-0 right-6 transform -translate-y-1/2 bg-indigo-500 text-white px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider">Popular</span>
+          <div>
+            <div class="h-40 bg-gray-700 rounded-lg mb-4 overflow-hidden relative">
+              <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/30 to-purple-500/30 flex items-center justify-center">
+                <span class="text-4xl">🚀</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Pro Tier</h3>
+            <p class="text-gray-400 text-sm mb-4">Click heatmaps, custom canvas replays, automated session aggregations, and live socket data feed.</p>
+          </div>
+          <button id="btn-select-pro" class="w-full py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md font-medium transition duration-150">
+            Select Pro
+          </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div id="card-enterprise" class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-indigo-500 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="h-40 bg-gray-700 rounded-lg mb-4 overflow-hidden relative">
+              <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/40 to-purple-500/40 flex items-center justify-center">
+                <span class="text-4xl">👑</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Enterprise Tier</h3>
+            <p class="text-gray-400 text-sm mb-4">Dedicated database clusters, unlimited site streams, raw log outputs, and custom integrations.</p>
+          </div>
+          <button id="btn-select-enterprise" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium transition duration-150">
+            Select Enterprise
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Long scrollable mock section -->
+    <div class="bg-gray-850 border-t border-b border-gray-800 py-20">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold text-white mb-4">Need to scroll down?</h2>
+        <p class="text-gray-400 mb-8">This section creates vertical depth to track click events at different vertical pixel positions.</p>
+        <div class="h-96 border-2 border-dashed border-gray-700 rounded-xl flex items-center justify-center text-gray-500 bg-gray-900/50">
+          <span>Scroll area - Content depth spacer</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form & Newsletter Section -->
+    <div id="contact" class="max-w-xl mx-auto px-4 py-16">
+      <div class="bg-gray-850 rounded-2xl p-8 border border-gray-700 shadow-2xl">
+        <h3 class="text-2xl font-bold text-white mb-6 text-center">Keep In Touch</h3>
+        <form id="demo-contact-form" class="space-y-4" onsubmit="event.preventDefault(); alert('Demo submitted! This simulates a click event.')">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+            <input type="text" id="form-name" class="w-full bg-gray-900 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:border-indigo-500" placeholder="Jane Doe" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+            <input type="email" id="form-email" class="w-full bg-gray-900 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:border-indigo-500" placeholder="jane@example.com" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+            <textarea id="form-message" rows="3" class="w-full bg-gray-900 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:border-indigo-500" placeholder="Type something..." required></textarea>
+          </div>
+          <button type="submit" id="btn-submit-form" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-semibold tracking-wider transition duration-150">
+            Submit Demo Form
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 border-t border-gray-800 py-8">
+    <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a id="link-footer-privacy" href="#" class="hover:text-indigo-400">Privacy Policy</a>
+        <a id="link-footer-terms" href="#" class="hover:text-indigo-400">Terms of Service</a>
+        <a id="link-footer-github" href="#" class="hover:text-indigo-400">GitHub</a>
+      </div>
+      <p>&copy; 2026 CausalFunnel Analytics SDK Demo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating indicator to show Session ID -->
+  <div class="fixed bottom-4 right-4 bg-gray-800/95 border border-indigo-500/50 backdrop-blur text-xs p-3 rounded-lg shadow-xl max-w-sm">
+    <p class="font-semibold text-indigo-400 mb-1">Your Tracking Session ID:</p>
+    <code id="session-display" class="bg-gray-900 px-2 py-1 rounded block text-gray-300 border border-gray-700 select-all font-mono">Loading...</code>
+  </div>
+
+  <script>
+    // Update the floating indicator when script is fully loaded
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (window.tracker) {
+          document.getElementById('session-display').textContent = window.tracker.sessionId;
+        }
+      }, 500);
+    });
+  </script>
+</body>
+</html>
