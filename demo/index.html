@@ -172,7 +172,7 @@
     <code id="session-display" class="bg-gray-900 px-2 py-1 rounded block text-gray-300 border border-gray-700 select-all font-mono">Loading...</code>
   </div>
 
-  <script>
+  <!-- <script>
     // Update the floating indicator when script is fully loaded
     window.addEventListener('load', () => {
       setTimeout(() => {
@@ -181,6 +181,13 @@
         }
       }, 500);
     });
+  </script> -->
+  <script>
+    window.trackerConfig = {
+      endpoint: 'https://casual-funnel.onrender.com/api/events'
+    };
   </script>
+  <script src="tracker.js"></script>
+
 </body>
 </html>
